@@ -14,8 +14,6 @@ reset();
 randomScore.text("Hello World");
 currentScore.text("Hello World2");
 
-
-
 })
 
 function reset() {
@@ -27,9 +25,6 @@ function reset() {
     c3Number = getRandomInt(1,12);
     c4Number = getRandomInt(1,12);
   
- 
-    
-    // console.log(testNumber);
 }
 
 
