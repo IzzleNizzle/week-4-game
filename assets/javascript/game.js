@@ -1,30 +1,86 @@
 var randomScore = $('#random-score');
 var currentScore = $('#current-score');
-var randomNumber = 0;
+var winsElement = $('#wins');
+var lossesElement = $('#losses');
+var randomNumber;
 var userScore = 0;
-var c1Number = 0;
-var c2Number = 0;
-var c3Number = 0;
-var c4Number = 0;
+var wins = 0;
+var losses = 0;
+
 
 
 $(document).ready(function() {
 
 reset();
-randomScore.text("Hello World");
-currentScore.text("Hello World2");
+randomScore.text(randomNumber);
+currentScore.text(userScore);
+winsElement.text(wins);
+lossesElement.text(losses);
+
+
+
+  // Next we create a for loop to create crystals for every numberOption.
+  for (var i = 0; i < 4; i++) {
+
+    // For each iteration, we will create an imageCrystal
+    var imageCrystal = $("<img>");
+
+    // First each crystal will be given the class ".crystal-image".
+    // This will allow the CSS to take effect.
+    imageCrystal.addClass("crystal-image");
+
+    imageCrystal.attr("id", "crystal" + i);
+
+    // Each imageCrystal will be given a src link to the crystal image
+    imageCrystal.attr("src", "assets/images/crystal" + (i + 1) + ".jpg");
+
+    // Each imageCrystal will be given a data attribute called data-crystalValue.
+    // This data attribute will be set equal to a random number between 1 and 12.
+    imageCrystal.attr("data-crystalvalue", getRandomInt(1,12));
+
+    // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
+    $("#crystals").append(imageCrystal);
+  }
+
+
+
+
+
+
+
 
 })
+
+
+
+
+
+
+
 
 function reset() {
     // Resetting Variables
     userScore = 0;
     randomNumber = getRandomInt(19, 120);
-    c1Number = getRandomInt(1,12);
-    c2Number = getRandomInt(1,12);
-    c3Number = getRandomInt(1,12);
-    c4Number = getRandomInt(1,12);
   
+
+    for (i=0; i < 4; i++) {
+
+         // Each imageCrystal will be given a data attribute called data-crystalValue.
+    // This data attribute will be set equal to a random number between 1 and 12.
+    $("#crystal"+i).attr("data-crystalvalue", getRandomInt(1,12));
+
+    }
+   
+    // Printing out recent Data
+    randomScore.text(randomNumber);
+    currentScore.text(userScore);
+    winsElement.text(wins);
+    lossesElement.text(losses);
+
+
+
+
 }
 
 
