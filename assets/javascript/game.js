@@ -2,6 +2,7 @@ var randomScore = $('#random-score');
 var currentScore = $('#current-score');
 var winsElement = $('#wins');
 var lossesElement = $('#losses');
+var promptMessage = $('#prompt');
 var randomNumber;
 var userScore = 0;
 var wins = 0;
@@ -16,7 +17,6 @@ randomScore.text(randomNumber);
 currentScore.text(userScore);
 winsElement.text(wins);
 lossesElement.text(losses);
-
 
 
   // Next we create a for loop to create crystals for every numberOption.
@@ -42,12 +42,36 @@ lossesElement.text(losses);
     $("#crystals").append(imageCrystal);
   }
 
+  // On click function to calculate value of image clicked as well as processing logic for winning/losing sequence.
+  $('.crystal-image').on("click", function () {
+
+    // Reseting prompt message to blank once a user clicks on a new crystal
+    promptMessage.text("");
+    // Creating var to capture value of picture clicked
+    var crystalValue = ($(this).attr("data-crystalvalue"));
+    crystalValue = parseInt(crystalValue);
+    userScore += crystalValue;
+    // Print updated data to screen.
+    printData();
 
 
+    // If userScore is higher than randomNumber, they loose a round and it starts again
+    if (userScore > randomNumber) {
+        promptMessage.text("You lost...");
+        losses ++;
+        reset();
+
+    }
+    // If userScore is equal to randomNumber then the user gets a win and the round starts again
+    if (userScore === randomNumber) {
+        promptMessage.text("You Won!!!");
+        wins ++;
+        reset();
+
+    }
 
 
-
-
+  })
 
 })
 
@@ -72,18 +96,21 @@ function reset() {
 
     }
    
-    // Printing out recent Data
-    randomScore.text(randomNumber);
-    currentScore.text(userScore);
-    winsElement.text(wins);
-    lossesElement.text(losses);
+    printData();
 
 
 
 
 }
 
+    function printData() {
 
+        // Printing out recent Data
+        randomScore.text(randomNumber);
+        currentScore.text(userScore);
+        winsElement.text(wins);
+        lossesElement.text(losses);
+    }
 
 
 
