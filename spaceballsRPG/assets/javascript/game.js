@@ -19,38 +19,69 @@ winsElement.text(wins);
 lossesElement.text(losses);
 
 
-  // Next we create a for loop to create crystals for every numberOption.
+  // Next we create a for loop to create characters for every.
   for (var i = 0; i < 4; i++) {
 
-    // For each iteration, we will create an imageCrystal
-    var imageCrystal = $("<img>");
+    var imageCharOutline = $('<div>');
+    // For each iteration, we will create an imageCharacter
+    var imageCharacter = $("<img>");
+    var imageSpan = $('<span>');
 
-    // First each crystal will be given the class ".crystal-image".
+    // First each crystal will be given the class ".character-image".
     // This will allow the CSS to take effect.
-    imageCrystal.addClass("crystal-image");
+    imageCharacter.addClass("character-image");
+    imageCharOutline.addClass("character-outline");
 
-    imageCrystal.attr("id", "crystal" + i);
+    imageCharacter.attr("id", "character" + (i + 1));
+    imageCharOutline.attr("id", "char" + (i + 1));
+    imageSpan.attr("id", "holder" + (i + 1));
 
-    // Each imageCrystal will be given a src link to the crystal image
-    imageCrystal.attr("src", "assets/images/crystal" + (i + 1) + ".jpg");
 
-    // Each imageCrystal will be given a data attribute called data-crystalValue.
+    //testing element manipulation
+    imageCharOutline.text("hello world");
+    // var character1 = "hello world" + imageSpan + "test123";
+
+    console.log(imageCharOutline);
+
+    // Each imageCharacter will be given a src link to the crystal image
+    imageCharacter.attr("src", "assets/images/spaceballs" + (i + 1) + ".jpg");
+
+    // Each imageCharacter will be given a data attribute called data-charactervalue.
     // This data attribute will be set equal to a random number between 1 and 12.
-    imageCrystal.attr("data-crystalvalue", getRandomInt(1,12));
-
+    imageCharacter.attr("data-charactervalue", getRandomInt(1,12));
+    
     // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
-    $("#crystals").append(imageCrystal);
+    $("#characters").append(imageCharOutline);
+    $('#char' + (i + 1)).html(imageSpan);
+    $("#holder" + (i+1)).html(imageCharacter);
+    
   }
 
+  
+
+  $('#test').on("click", function () {
+console.log("testing button");
+    for (i=0;i<4;i++){
+
+        
+        $("#crystals").append($('#char'+(i+1)));
+        
+
+
+
+    }
+
+  })
+
   // On click function to calculate value of image clicked as well as processing logic for winning/losing sequence.
-  $('.crystal-image').on("click", function () {
+  $('.character-image').on("click", function () {
 
     // Reseting prompt message to blank once a user clicks on a new crystal
     promptMessage.text("");
     // Creating var to capture value of picture clicked
-    var crystalValue = ($(this).attr("data-crystalvalue"));
-    crystalValue = parseInt(crystalValue);
-    userScore += crystalValue;
+    var characterValue = ($(this).attr("data-charactervalue"));
+    characterValue = parseInt(characterValue);
+    userScore += characterValue;
     // Print updated data to screen.
     printData();
 
@@ -90,16 +121,13 @@ function reset() {
 
     for (i=0; i < 4; i++) {
 
-         // Each imageCrystal will be given a data attribute called data-crystalValue.
+         // Each imageCrystal will be given a data attribute called data-charactervalue.
     // This data attribute will be set equal to a random number between 1 and 12.
-    $("#crystal"+i).attr("data-crystalvalue", getRandomInt(1,12));
+    $("#character"+(i+1)).attr("data-charactervalue", getRandomInt(1,12));
 
     }
    
     printData();
-
-
-
 
 }
 

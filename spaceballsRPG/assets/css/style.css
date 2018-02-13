@@ -1,8 +1,14 @@
 body {
     background-color: aqua;
 }
-.crystal-image {
+p {
+    clear: both;
+}
+.character-image {
     width: 150px;
     height: 150px;
     margin: 5px
   }
+.character-outline {
+    float: left;
+}
