@@ -49,11 +49,14 @@ lossesElement.text(losses);
     // Each imageCharacter will be given a data attribute called data-charactervalue.
     // This data attribute will be set equal to a random number between 1 and 12.
     imageCharacter.attr("data-charactervalue", getRandomInt(1,12));
+  
     
+    imageCharOutline.html(imageSpan);
+
     // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
     $("#characters").append(imageCharOutline);
-    $('#char' + (i + 1)).html(imageSpan);
-    $("#holder" + (i+1)).html(imageCharacter);
+    // $('#char' + (i + 1)).html(imageSpan);
+    // $("#holder" + (i+1)).html(imageCharacter);
     
   }
 
